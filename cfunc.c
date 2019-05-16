@@ -1,4 +1,4 @@
-#include "crctable.h"
+#include "crctable.c"
 
 static unsigned int crc32(unsigned int ch,unsigned int crc){
   return (crc >> 8) ^ crctable[(crc ^ ch) & 0xFF];
