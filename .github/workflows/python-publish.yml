@@ -1,0 +1,19 @@
+# This workflows will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+name: pypi manylinux wheel deployer
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  Linux-build:
+    runs-on: ubuntu-latest
+    env:
+      TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+      TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: build and upload manylinux wheels
+        uses:  Niraj-Kamdar/manylinux-wheel-builder@master
